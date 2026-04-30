@@ -1,0 +1,15 @@
+[project]
+name = "toutiao"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "aiomysql>=0.3.2",
+    "fastapi>=0.136.1",
+    "sqlalchemy[asyncio]>=2.0.49",
+    "uvicorn>=0.46.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.20.2",
+]
