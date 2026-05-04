@@ -12,6 +12,6 @@ async def get_current_user(authorization:str=Header(...),db:AsyncSession=Depends
     # token =authorization.replace("Bearer ","")
     user = await users.get_user_by_token(db,token)
     if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="无效令牌")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="无效令牌，请重新登录")
     return user
 

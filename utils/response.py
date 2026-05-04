@@ -7,4 +7,5 @@ def success_response(msg:str="success",data=None):
         "msg":msg,
         "data":data
     }
+    #                            将python对象转换为JSON对象
     return JSONResponse(content=jsonable_encoder(content))

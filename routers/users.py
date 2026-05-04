@@ -54,7 +54,7 @@ async def get_user_info(user:User = Depends(get_current_user)):
 @router.put("/update")
 async def update_user_info(user_data:UserUpdateRequest,
                            user:User = Depends(get_current_user),
-                           db:AsyncSession=Depends(get_db())):
+                           db:AsyncSession=Depends(get_db)):
     user=await users.update_user(db,user.username,user_data)
     return success_response(msg="更新用户信息成功",
                             data=UserInfoResponse.model_validate(user))
@@ -63,7 +63,7 @@ async def update_user_info(user_data:UserUpdateRequest,
 async def update_password(
         password_data:UserChangePasswordRequest,
         user:User = Depends(get_current_user),
-        db:AsyncSession=Depends(get_db())):
+        db:AsyncSession=Depends(get_db)):
     res_change_password=await users.change_password(db,user,password_data.old_password,password_data.new_password)
     if not res_change_password:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail="旧密码错误")
