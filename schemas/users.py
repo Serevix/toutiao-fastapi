@@ -33,3 +33,14 @@ class UserAuthResponse(BaseModel):
         populate_by_name=True,#alias/字段名兼容
         from_attributes=True# 允许从ORM对象属性中获取值
     )
+
+class UserUpdateRequest(BaseModel):
+    nickname:Optional[str]=Field(None,max_length=50,description="昵称")
+    avatar:Optional[str]=Field(None,max_length=255,description="头像")
+    gender:Optional[str]=Field(None,max_length=10,description="性别")
+    bio:Optional[ str]=Field(None,max_length=500,description="简介")
+    phone:Optional[str]=Field(None,max_length=11,description="手机号")
+
+class UserChangePasswordRequest(BaseModel):
+    old_password:str=Field(...,description="旧密码",alias="oldPassword")
+    new_password:str=Field(...,min_length=2,max_length=72,description="新密码",alias="oldPassword")
